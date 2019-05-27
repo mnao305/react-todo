@@ -1,6 +1,15 @@
 import React from 'react'
 
-const Todo: React.FC = () => {
+interface Todo {
+  id: string
+  name: string
+  check: boolean
+}
+interface TodoProps {
+  todo: Todo
+}
+
+const Todo: React.FC<TodoProps> = props => {
   const deleteTodo = (e: React.MouseEvent): void => {
     e.preventDefault()
     window.alert('Delete')
@@ -9,7 +18,7 @@ const Todo: React.FC = () => {
     <li>
       <label>
         <input type="checkbox" />
-        hogefuga
+        {props.todo.name}
       </label>
       <a href="#" onClick={(e: React.MouseEvent) => deleteTodo(e)}>
         [x]
