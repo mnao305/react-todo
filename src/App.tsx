@@ -31,11 +31,26 @@ const App: React.FC = () => {
     })
   }
 
+  const checkChange = (id: string) => {
+    const index = todos.findIndex(e => {
+      return e.id === id
+    })
+
+    setTodos(prevState => {
+      prevState[index].check = !prevState[index].check
+      return [...prevState]
+    })
+  }
+
   return (
     <div className="App">
       <Header />
       <InputForm addTodo={addTodo} />
-      <TodoList deleteTodo={deleteTodo} todos={todos} />
+      <TodoList
+        checkChange={checkChange}
+        deleteTodo={deleteTodo}
+        todos={todos}
+      />
     </div>
   )
 }

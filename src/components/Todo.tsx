@@ -8,6 +8,7 @@ interface Todo {
 interface TodoProps {
   todo: Todo
   deleteTodo: Function
+  checkChange: Function
 }
 
 const Todo: React.FC<TodoProps> = props => {
@@ -18,10 +19,17 @@ const Todo: React.FC<TodoProps> = props => {
       props.deleteTodo(props.todo.id)
     }
   }
+  const checkChange = () => {
+    props.checkChange(props.todo.id)
+  }
   return (
-    <li>
+    <li className={`check${props.todo.check}`}>
       <label>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={props.todo.check}
+          onChange={checkChange}
+        />
         {props.todo.name}
       </label>
       <a href="#" onClick={(e: React.MouseEvent) => deleteTodo(e)}>

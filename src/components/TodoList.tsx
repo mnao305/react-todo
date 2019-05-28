@@ -10,6 +10,7 @@ interface Todos {
 interface TodoListProps {
   todos: Array<Todos>
   deleteTodo: Function
+  checkChange: Function
 }
 
 const TodoList: React.FC<TodoListProps> = props => {
@@ -18,7 +19,12 @@ const TodoList: React.FC<TodoListProps> = props => {
       <ul>
         {props.todos.map(todo => {
           return (
-            <Todo deleteTodo={props.deleteTodo} key={todo.id} todo={todo} />
+            <Todo
+              checkChange={props.checkChange}
+              deleteTodo={props.deleteTodo}
+              key={todo.id}
+              todo={todo}
+            />
           )
         })}
       </ul>
