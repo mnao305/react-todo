@@ -16,11 +16,26 @@ const App: React.FC = () => {
     })
   }
 
+  const deleteTodo = (deleteID: string) => {
+    console.log(deleteID)
+
+    const index = todos.findIndex(e => {
+      return e.id === deleteID
+    })
+    console.log(index)
+
+    setTodos(prevState => {
+      prevState.splice(index, 1)
+
+      return [...prevState]
+    })
+  }
+
   return (
     <div className="App">
       <Header />
       <InputForm addTodo={addTodo} />
-      <TodoList todos={todos} />
+      <TodoList deleteTodo={deleteTodo} todos={todos} />
     </div>
   )
 }

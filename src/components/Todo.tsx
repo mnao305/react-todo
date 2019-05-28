@@ -7,12 +7,16 @@ interface Todo {
 }
 interface TodoProps {
   todo: Todo
+  deleteTodo: Function
 }
 
 const Todo: React.FC<TodoProps> = props => {
   const deleteTodo = (e: React.MouseEvent): void => {
     e.preventDefault()
-    window.alert('Delete')
+    const flg = window.confirm('削除しますか？')
+    if (flg) {
+      props.deleteTodo(props.todo.id)
+    }
   }
   return (
     <li>
