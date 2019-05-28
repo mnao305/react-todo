@@ -6,12 +6,16 @@ const InputForm: React.FC = () => {
   const addTodo = () => {
     window.alert(text)
   }
-  const changeText = (e: any) => {
+  const changeText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
   }
   return (
     <div className="InputForm">
-      <input type="text" value={text} onChange={(e: any) => changeText(e)} />
+      <input
+        type="text"
+        value={text}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeText(e)}
+      />
       <button onClick={addTodo}>追加</button>
     </div>
   )
