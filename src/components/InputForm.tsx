@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 
-const InputForm: React.FC = () => {
+interface InputFormProps {
+  addTodo: Function
+}
+
+const InputForm: React.FC<InputFormProps> = props => {
   const [text, setText] = useState('')
 
   const addTodo = () => {
-    window.alert(text)
+    props.addTodo(text)
+    setText('')
   }
   const changeText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)

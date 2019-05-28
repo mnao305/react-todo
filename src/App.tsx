@@ -5,17 +5,22 @@ import TodoList from './components/TodoList'
 import InputForm from './components/InputForm'
 
 const App: React.FC = () => {
-  const [state, setState] = useState({
-    todos: [
-      { id: '0', name: 'hoge', check: false },
-      { id: '0', name: 'fuga', check: false }
-    ]
-  })
+  const [todos, setTodos] = useState([
+    { id: '0', name: 'hoge', check: false },
+    { id: '1', name: 'fuga', check: false }
+  ])
+
+  const addTodo = (data: any) => {
+    setTodos(prevState => {
+      return [...prevState, { id: `${Date.now()}`, name: data, check: false }]
+    })
+  }
+
   return (
     <div className="App">
       <Header />
-      <InputForm />
-      <TodoList todos={state.todos} />
+      <InputForm addTodo={addTodo} />
+      <TodoList todos={todos} />
     </div>
   )
 }
